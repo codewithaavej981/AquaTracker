@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout, Menu } from 'antd';
+import { Layout, Menu, theme } from 'antd';
 import { useLocation, useNavigate } from 'react-router-dom';
 import {
   DashboardOutlined,
@@ -19,6 +19,7 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
   const location = useLocation();
   const navigate = useNavigate();
   const { user, logout } = useAuth();
+  const { token } = theme.useToken();
 
   const isAdmin = user?.role === 'admin';
 
@@ -114,13 +115,14 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
       onCollapse={(value) => setCollapsed(value)}
       breakpoint="lg"
       style={{
-        background: '#ffffff',
-        borderRight: '1px solid #e2e8f0',
+        background: token.colorBgContainer,
+        borderRight: `1px solid ${token.colorBorderSecondary || '#e2e8f0'}`,
         minHeight: '100vh',
         position: 'sticky',
         top: 0,
         left: 0,
         zIndex: 100,
+        transition: 'background-color 0.25s ease, border-color 0.25s ease',
       }}
       width={240}
     >
@@ -131,7 +133,7 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
           display: 'flex',
           alignItems: 'center',
           padding: '0 20px',
-          borderBottom: '1px solid #f1f5f9',
+          borderBottom: `1px solid ${token.colorBorderSecondary || '#f1f5f9'}`,
           gap: 12,
         }}
       >
@@ -154,7 +156,7 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
         </div>
         {!collapsed && (
           <div>
-            <div style={{ fontWeight: 700, fontSize: 16, color: '#0f172a', letterSpacing: '-0.3px', lineHeight: 1.2 }}>
+            <div style={{ fontWeight: 700, fontSize: 16, color: token.colorText, letterSpacing: '-0.3px', lineHeight: 1.2 }}>
               AquaTracker
             </div>
             <div style={{ fontSize: 11, color: '#0284c7', fontWeight: 600 }}>
@@ -168,7 +170,7 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
       <Menu
         mode="inline"
         selectedKeys={[getSelectedKey(location.pathname)]}
-        style={{ borderRight: 0, marginTop: 12 }}
+        style={{ borderRight: 0, marginTop: 12, background: 'transparent' }}
         items={isAdmin ? adminMenuItems : userMenuItems}
         onClick={handleMenuClick}
       />

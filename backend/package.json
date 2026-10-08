@@ -9,7 +9,8 @@
     "dev": "nodemon src/server.js",
     "seed": "node seedAdmin.js",
     "test:phase1": "node testPhase1.js",
-    "test:phase2": "node testPhase2.js"
+    "test:phase2": "node testPhase2.js",
+    "test:phase3": "node testPhase3.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
