@@ -22,6 +22,13 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
 
   const isAdmin = user?.role === 'admin';
 
+  // Map legacy/alias paths to primary menu keys
+  const getSelectedKey = (path) => {
+    if (path === '/consumption') return '/water-consumption';
+    if (path === '/my-complaints') return '/complaints';
+    return path;
+  };
+
   // User navigation items
   const userMenuItems = [
     {
@@ -30,12 +37,12 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
       label: 'Dashboard',
     },
     {
-      key: '/consumption',
+      key: '/water-consumption',
       icon: <ExperimentOutlined />,
       label: 'Water Consumption',
     },
     {
-      key: '/my-complaints',
+      key: '/complaints',
       icon: <FileTextOutlined />,
       label: 'My Complaints',
     },
@@ -160,7 +167,7 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
       {/* Menu Navigation */}
       <Menu
         mode="inline"
-        selectedKeys={[location.pathname]}
+        selectedKeys={[getSelectedKey(location.pathname)]}
         style={{ borderRight: 0, marginTop: 12 }}
         items={isAdmin ? adminMenuItems : userMenuItems}
         onClick={handleMenuClick}
