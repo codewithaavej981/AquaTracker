@@ -91,8 +91,8 @@ const AdminDashboard = () => {
               System-wide water consumption oversight and municipal grievance redressal operations.
             </Paragraph>
           </Col>
-          <Col xs={24} md={8} style={{ textAlign: 'right' }}>
-            <Space>
+          <Col xs={24} md={8} className="responsive-banner-col">
+            <Space wrap className="responsive-banner-actions">
               <Button
                 icon={<ReloadOutlined spin={loading} />}
                 onClick={fetchStats}
@@ -192,7 +192,7 @@ const AdminDashboard = () => {
         style={{ marginBottom: 24 }}
       >
         <Row gutter={[16, 16]} align="middle">
-          <Col xs={24} md={8}>
+          <Col xs={24} sm={12} md={8}>
             <Card className="aqua-card">
               <Statistic
                 title={<span style={{ color: '#f59e0b', fontWeight: 600 }}>Pending Review</span>}
@@ -206,7 +206,7 @@ const AdminDashboard = () => {
             </Card>
           </Col>
 
-          <Col xs={24} md={8}>
+          <Col xs={24} sm={12} md={8}>
             <Card className="aqua-card">
               <Statistic
                 title={<span style={{ color: '#0284c7', fontWeight: 600 }}>In Progress</span>}
@@ -220,7 +220,7 @@ const AdminDashboard = () => {
             </Card>
           </Col>
 
-          <Col xs={24} md={8}>
+          <Col xs={24} sm={12} md={8}>
             <Card className="aqua-card">
               <Statistic
                 title={<span style={{ color: '#10b981', fontWeight: 600 }}>Resolved</span>}

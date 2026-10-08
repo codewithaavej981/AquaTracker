@@ -251,19 +251,21 @@ const AdminComplaints = () => {
               Review community reports across all residential sectors and advance resolution workflows (Pending &rarr; In Progress &rarr; Resolved).
             </Paragraph>
           </Col>
-          <Col xs={24} md={8} style={{ textAlign: 'right' }}>
-            <Button
-              icon={<ReloadOutlined spin={loading} />}
-              onClick={fetchComplaints}
-              style={{
-                background: 'rgba(255,255,255,0.15)',
-                color: '#fff',
-                border: 'none',
-                fontWeight: 600,
-              }}
-            >
-              Refresh
-            </Button>
+          <Col xs={24} md={8} className="responsive-banner-col">
+            <Space wrap className="responsive-banner-actions">
+              <Button
+                icon={<ReloadOutlined spin={loading} />}
+                onClick={fetchComplaints}
+                style={{
+                  background: 'rgba(255,255,255,0.15)',
+                  color: '#fff',
+                  border: 'none',
+                  fontWeight: 600,
+                }}
+              >
+                Refresh
+              </Button>
+            </Space>
           </Col>
         </Row>
       </Card>
@@ -271,7 +273,7 @@ const AdminComplaints = () => {
       {/* Filter Toolbar Card */}
       <Card className="aqua-card" style={{ marginBottom: 16 }}>
         <Row align="middle" justify="space-between" gutter={[16, 16]}>
-          <Col xs={24} sm={14}>
+          <Col xs={24} md={16}>
             <Space wrap size="middle">
               <div>
                 <Text type="secondary" style={{ fontWeight: 600, marginRight: 8 }}>
@@ -310,7 +312,7 @@ const AdminComplaints = () => {
             </Space>
           </Col>
 
-          <Col xs={24} sm={10} style={{ textAlign: 'right' }}>
+          <Col xs={24} md={8} className="responsive-banner-col">
             <Text type="secondary" style={{ fontSize: 13 }}>
               Displaying <b>{complaints.length}</b> grievances
             </Text>
@@ -364,21 +366,22 @@ const AdminComplaints = () => {
         ]}
         centered
         width={680}
+        style={{ maxWidth: '95vw', top: 20 }}
       >
         {viewingComplaint && (
           <Descriptions
             bordered
             column={1}
             style={{ marginTop: 16 }}
-            labelStyle={{ width: '32%', fontWeight: 600 }}
+            labelStyle={{ fontWeight: 600 }}
           >
             <Descriptions.Item label="Grievance Category">
               <span style={{ fontWeight: 700 }}>{viewingComplaint.type}</span>
             </Descriptions.Item>
             <Descriptions.Item label="Citizen Applicant">
-              <Space>
+              <Space wrap>
                 <UserOutlined style={{ color: '#0284c7' }} />
-                <span>
+                <span style={{ wordBreak: 'break-word' }}>
                   {viewingComplaint.userId?.name || 'Citizen'} ({viewingComplaint.userId?.email || 'N/A'})
                 </span>
               </Space>
@@ -390,13 +393,13 @@ const AdminComplaints = () => {
               {renderPriority(viewingComplaint.priority)}
             </Descriptions.Item>
             <Descriptions.Item label="Incident Location">
-              <Space>
+              <Space wrap>
                 <EnvironmentOutlined style={{ color: '#0284c7' }} />
-                <span>{viewingComplaint.location}</span>
+                <span style={{ wordBreak: 'break-word' }}>{viewingComplaint.location}</span>
               </Space>
             </Descriptions.Item>
             <Descriptions.Item label="Problem Description">
-              <div style={{ whiteSpace: 'pre-wrap', lineHeight: 1.6 }}>
+              <div style={{ whiteSpace: 'pre-wrap', lineHeight: 1.6, wordBreak: 'break-word' }}>
                 {viewingComplaint.description}
               </div>
             </Descriptions.Item>
@@ -422,9 +425,11 @@ const AdminComplaints = () => {
         footer={null}
         destroyOnClose
         centered
+        width={540}
+        style={{ maxWidth: '95vw', top: 20 }}
       >
         <div style={{ marginBottom: 16, marginTop: 8 }}>
-          <Text type="secondary">
+          <Text type="secondary" style={{ wordBreak: 'break-word' }}>
             Category: <b>{selectedComplaint?.type}</b> | Location: <b>{selectedComplaint?.location}</b>
           </Text>
         </div>
@@ -441,24 +446,60 @@ const AdminComplaints = () => {
           >
             <Radio.Group buttonStyle="solid" size="large" style={{ width: '100%' }}>
               <Space direction="vertical" style={{ width: '100%' }}>
-                <Radio.Button value="Pending" style={{ width: '100%', height: 42, lineHeight: '42px' }}>
-                  <ClockCircleOutlined style={{ marginRight: 8, color: '#f59e0b' }} />
-                  Pending (Awaiting Initial Assessment)
+                <Radio.Button
+                  value="Pending"
+                  style={{
+                    width: '100%',
+                    minHeight: 44,
+                    height: 'auto',
+                    padding: '10px 14px',
+                    lineHeight: 1.4,
+                    whiteSpace: 'normal',
+                    display: 'flex',
+                    alignItems: 'center',
+                  }}
+                >
+                  <ClockCircleOutlined style={{ marginRight: 8, color: '#f59e0b', flexShrink: 0 }} />
+                  <span>Pending (Awaiting Initial Assessment)</span>
                 </Radio.Button>
-                <Radio.Button value="In Progress" style={{ width: '100%', height: 42, lineHeight: '42px' }}>
-                  <SyncOutlined style={{ marginRight: 8, color: '#0284c7' }} />
-                  In Progress (Maintenance Team Dispatched)
+                <Radio.Button
+                  value="In Progress"
+                  style={{
+                    width: '100%',
+                    minHeight: 44,
+                    height: 'auto',
+                    padding: '10px 14px',
+                    lineHeight: 1.4,
+                    whiteSpace: 'normal',
+                    display: 'flex',
+                    alignItems: 'center',
+                  }}
+                >
+                  <SyncOutlined style={{ marginRight: 8, color: '#0284c7', flexShrink: 0 }} />
+                  <span>In Progress (Maintenance Team Dispatched)</span>
                 </Radio.Button>
-                <Radio.Button value="Resolved" style={{ width: '100%', height: 42, lineHeight: '42px' }}>
-                  <CheckCircleOutlined style={{ marginRight: 8, color: '#10b981' }} />
-                  Resolved (Issue Fixed & Verified)
+                <Radio.Button
+                  value="Resolved"
+                  style={{
+                    width: '100%',
+                    minHeight: 44,
+                    height: 'auto',
+                    padding: '10px 14px',
+                    lineHeight: 1.4,
+                    whiteSpace: 'normal',
+                    display: 'flex',
+                    alignItems: 'center',
+                  }}
+                >
+                  <CheckCircleOutlined style={{ marginRight: 8, color: '#10b981', flexShrink: 0 }} />
+                  <span>Resolved (Issue Fixed & Verified)</span>
                 </Radio.Button>
               </Space>
             </Radio.Group>
           </Form.Item>
 
           <Form.Item style={{ marginBottom: 0, textAlign: 'right', marginTop: 24 }}>
-            <Space>
+            <Space wrap>
               <Button onClick={() => setStatusModalOpen(false)}>Cancel</Button>
               <Button
                 type="primary"

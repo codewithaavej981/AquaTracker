@@ -22,7 +22,7 @@ const ProtectedRoute = ({ children, requiredRole }) => {
     // If a normal user tries to access admin routes
     if (requiredRole === 'admin') {
       return (
-        <div style={{ padding: '80px 24px', background: token.colorBgLayout, minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <div style={{ padding: '40px 16px', maxWidth: '100%', background: token.colorBgLayout, minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
           <Result
             status="403"
             title="403 - Access Denied"

@@ -270,8 +270,8 @@ const WaterConsumption = () => {
               Record daily household water intake. The backend automatically computes and maintains accurate daily totals.
             </Paragraph>
           </Col>
-          <Col xs={24} md={8} style={{ textAlign: 'right' }}>
-            <Space>
+          <Col xs={24} md={8} className="responsive-banner-col">
+            <Space wrap className="responsive-banner-actions">
               <Button
                 icon={<ReloadOutlined />}
                 onClick={fetchRecords}
@@ -448,6 +448,8 @@ const WaterConsumption = () => {
         footer={null}
         destroyOnClose
         centered
+        width={520}
+        style={{ maxWidth: '95vw', top: 20 }}
       >
         <Form
           form={form}
@@ -463,8 +465,8 @@ const WaterConsumption = () => {
             <DatePicker style={{ width: '100%', borderRadius: 8 }} format="YYYY-MM-DD" />
           </Form.Item>
 
-          <Row gutter={12}>
-            <Col span={8}>
+          <Row gutter={[12, 12]}>
+            <Col xs={24} sm={8}>
               <Form.Item
                 name="morning"
                 label={<span style={{ fontWeight: 600 }}>Morning (L)</span>}
@@ -479,7 +481,7 @@ const WaterConsumption = () => {
                 />
               </Form.Item>
             </Col>
-            <Col span={8}>
+            <Col xs={24} sm={8}>
               <Form.Item
                 name="afternoon"
                 label={<span style={{ fontWeight: 600 }}>Afternoon (L)</span>}
@@ -494,7 +496,7 @@ const WaterConsumption = () => {
                 />
               </Form.Item>
             </Col>
-            <Col span={8}>
+            <Col xs={24} sm={8}>
               <Form.Item
                 name="evening"
                 label={<span style={{ fontWeight: 600 }}>Evening (L)</span>}
@@ -514,7 +516,7 @@ const WaterConsumption = () => {
           {/* Live Calculated Total Banner */}
           <Alert
             message={
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 6 }}>
                 <span style={{ fontWeight: 600 }}>Calculated Total Intake:</span>
                 <span style={{ fontSize: 16, fontWeight: 700, color: '#0284c7' }}>
                   {liveTotal} Litres
@@ -528,7 +530,7 @@ const WaterConsumption = () => {
           />
 
           <Form.Item style={{ marginBottom: 0, textAlign: 'right' }}>
-            <Space>
+            <Space wrap>
               <Button onClick={() => setModalOpen(false)}>Cancel</Button>
               <Button
                 type="primary"

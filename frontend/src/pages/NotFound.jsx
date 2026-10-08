@@ -10,7 +10,7 @@ const NotFound = () => {
   const homePath = user?.role === 'admin' ? '/admin/dashboard' : '/dashboard';
 
   return (
-    <div style={{ padding: '80px 24px', textAlign: 'center' }}>
+    <div style={{ padding: '40px 16px', maxWidth: '100%', textAlign: 'center' }}>
       <Result
         status="404"
         title="404"

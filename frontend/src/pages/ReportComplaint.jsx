@@ -82,7 +82,7 @@ const ReportComplaint = () => {
               Submit civic water concerns directly to municipal administrators. Initial status is logged as Pending.
             </Paragraph>
           </Col>
-          <Col xs={24} md={6} style={{ textAlign: 'right' }}>
+          <Col xs={24} md={6} className="responsive-banner-col">
             <Button
               icon={<ArrowLeftOutlined />}
               onClick={() => navigate('/complaints')}
@@ -157,7 +157,7 @@ const ReportComplaint = () => {
             label={<span style={{ fontWeight: 600 }}>Urgency Level</span>}
             rules={[{ required: true, message: 'Please select priority' }]}
           >
-            <Radio.Group buttonStyle="solid" size="large">
+            <Radio.Group buttonStyle="solid" size="large" className="responsive-radio-group">
               <Radio.Button value="Low">Low (Minor / Dripping)</Radio.Button>
               <Radio.Button value="Medium">Medium (Regular Supply Issue)</Radio.Button>
               <Radio.Button value="High" style={{ color: '#ef4444' }}>
@@ -190,7 +190,7 @@ const ReportComplaint = () => {
           </Form.Item>
 
           <Form.Item style={{ marginTop: 32, marginBottom: 8 }}>
-            <Space size="middle">
+            <Space wrap size="middle">
               <Button
                 type="primary"
                 htmlType="submit"

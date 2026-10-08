@@ -16,7 +16,8 @@ const EmptyState = ({
   return (
     <div
       style={{
-        padding: '32px 16px',
+        padding: '24px 12px',
+        maxWidth: '100%',
         background: token.colorBgContainer,
         borderRadius: 10,
         border: `1px solid ${token.colorBorderSecondary || '#e2e8f0'}`,

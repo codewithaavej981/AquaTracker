@@ -151,19 +151,21 @@ const AdminUsers = () => {
               Read-only administrative directory of all citizen and administrator accounts registered in AquaTracker.
             </Paragraph>
           </Col>
-          <Col xs={24} md={8} style={{ textAlign: 'right' }}>
-            <Button
-              icon={<ReloadOutlined spin={loading} />}
-              onClick={fetchUsers}
-              style={{
-                background: 'rgba(255,255,255,0.15)',
-                color: '#fff',
-                border: 'none',
-                fontWeight: 600,
-              }}
-            >
-              Refresh Directory
-            </Button>
+          <Col xs={24} md={8} className="responsive-banner-col">
+            <Space wrap className="responsive-banner-actions">
+              <Button
+                icon={<ReloadOutlined spin={loading} />}
+                onClick={fetchUsers}
+                style={{
+                  background: 'rgba(255,255,255,0.15)',
+                  color: '#fff',
+                  border: 'none',
+                  fontWeight: 600,
+                }}
+              >
+                Refresh Directory
+              </Button>
+            </Space>
           </Col>
         </Row>
       </Card>
@@ -172,7 +174,7 @@ const AdminUsers = () => {
       <Card
         className="aqua-card"
         title={
-          <Space>
+          <Space wrap>
             <TeamOutlined style={{ color: '#0284c7' }} />
             <span style={{ fontWeight: 600 }}>
               All Registered Accounts ({filteredUsers.length} of {users.length})
@@ -185,7 +187,7 @@ const AdminUsers = () => {
             prefix={<SearchOutlined style={{ color: '#94a3b8' }} />}
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
-            style={{ width: 240, borderRadius: 8 }}
+            style={{ width: '100%', maxWidth: 260, minWidth: 160, borderRadius: 8 }}
             allowClear
           />
         }
