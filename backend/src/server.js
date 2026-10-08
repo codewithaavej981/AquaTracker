@@ -15,12 +15,16 @@ const adminRoutes = require('./routes/adminRoutes');
 const app = express();
 
 // Middleware
-app.use(
-  cors({
-    origin: ['http://localhost:5173', 'http://127.0.0.1:5173'],
-    credentials: true,
-  })
-);
+const corsOptions = {
+  origin: [
+    'http://localhost:5173',
+    'https://aquatracker-qmnh.onrender.com'
+  ],
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+};
+app.options('*', cors(corsOptions));
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
