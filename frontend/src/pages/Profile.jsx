@@ -27,27 +27,28 @@ const Profile = () => {
   return (
     <div style={{ maxWidth: 800, margin: '0 auto' }}>
       <Card className="aqua-card" style={{ marginBottom: 24 }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 20, marginBottom: 24 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 16, flexWrap: 'wrap', marginBottom: 24 }}>
           <Avatar
-            size={72}
+            size={64}
             style={{
               backgroundColor: user?.role === 'admin' ? '#7c3aed' : '#0284c7',
-              fontSize: 28,
+              fontSize: 26,
+              flexShrink: 0,
             }}
             icon={<UserOutlined />}
           />
-          <div>
-            <Title level={3} style={{ margin: 0, fontWeight: 700 }}>
+          <div style={{ minWidth: 0, flex: 1 }}>
+            <Title level={3} style={{ margin: 0, fontWeight: 700, wordBreak: 'break-word' }}>
               {user?.name}
             </Title>
-            <Space style={{ marginTop: 4 }}>
+            <Space wrap style={{ marginTop: 4 }}>
               <Tag
                 color={user?.role === 'admin' ? 'purple' : 'blue'}
                 style={{ borderRadius: 12, padding: '2px 10px', fontWeight: 600 }}
               >
                 {user?.role === 'admin' ? '🛡️ Administrator' : '👤 Citizen'}
               </Tag>
-              <Text type="secondary" style={{ fontSize: 13 }}>ID: {user?.id || 'Active'}</Text>
+              <Text type="secondary" style={{ fontSize: 13, wordBreak: 'break-all' }}>ID: {user?.id || 'Active'}</Text>
             </Space>
           </div>
         </div>
@@ -55,13 +56,13 @@ const Profile = () => {
         <Descriptions
           bordered
           column={1}
-          labelStyle={{ width: '30%', fontWeight: 600 }}
+          labelStyle={{ fontWeight: 600 }}
         >
           <Descriptions.Item label={<span><UserOutlined style={{ marginRight: 8, color: '#0284c7' }} />Full Name</span>}>
-            <span style={{ fontWeight: 500 }}>{user?.name}</span>
+            <span style={{ fontWeight: 500, wordBreak: 'break-word' }}>{user?.name}</span>
           </Descriptions.Item>
           <Descriptions.Item label={<span><MailOutlined style={{ marginRight: 8, color: '#0284c7' }} />Email Address</span>}>
-            <span>{user?.email}</span>
+            <span style={{ wordBreak: 'break-all' }}>{user?.email}</span>
           </Descriptions.Item>
           <Descriptions.Item label={<span><SafetyOutlined style={{ marginRight: 8, color: '#0284c7' }} />Assigned Role</span>}>
             <Tag color={user?.role === 'admin' ? 'purple' : 'blue'}>
@@ -78,7 +79,7 @@ const Profile = () => {
           </Descriptions.Item>
         </Descriptions>
 
-        <div style={{ marginTop: 24, display: 'flex', justifyContent: 'flex-end' }}>
+        <div style={{ marginTop: 24, display: 'flex', justifyContent: 'flex-end', flexWrap: 'wrap' }}>
           <Button
             danger
             icon={<LogoutOutlined />}

@@ -15,7 +15,7 @@ import { useNavigate } from 'react-router-dom';
 
 const { Header: AntHeader } = Layout;
 
-const Header = ({ collapsed, setCollapsed }) => {
+const Header = ({ collapsed, isMobile, mobileOpen, onToggleMenu }) => {
   const { user, logout } = useAuth();
   const { isDark, toggleTheme } = useTheme();
   const navigate = useNavigate();
@@ -44,10 +44,16 @@ const Header = ({ collapsed, setCollapsed }) => {
     },
   ];
 
+  const menuToggleIcon = isMobile ? (
+    mobileOpen ? <MenuFoldOutlined /> : <MenuUnfoldOutlined />
+  ) : (
+    collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />
+  );
+
   return (
     <AntHeader
       style={{
-        padding: '0 20px',
+        padding: isMobile ? '0 12px' : '0 20px',
         background: token.colorBgContainer,
         borderBottom: `1px solid ${token.colorBorderSecondary || '#e2e8f0'}`,
         display: 'flex',
@@ -61,53 +67,66 @@ const Header = ({ collapsed, setCollapsed }) => {
       }}
     >
       {/* Left section: menu toggle and branding */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: isMobile ? 8 : 12, minWidth: 0 }}>
         <Button
           type="text"
-          icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-          onClick={() => setCollapsed(!collapsed)}
+          icon={menuToggleIcon}
+          onClick={onToggleMenu}
           style={{
             fontSize: '16px',
             width: 38,
             height: 38,
+            flexShrink: 0,
           }}
           aria-label="Toggle navigation menu"
         />
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'nowrap' }}>
-          <span style={{ fontSize: 15, fontWeight: 700, color: token.colorText, whiteSpace: 'nowrap' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexWrap: 'nowrap', minWidth: 0 }}>
+          <span
+            style={{
+              fontSize: isMobile ? 14 : 15,
+              fontWeight: 700,
+              color: token.colorText,
+              whiteSpace: 'nowrap',
+            }}
+          >
             AquaTracker
           </span>
-          <Tag color="cyan" style={{ borderRadius: 12, padding: '0 8px', fontSize: 11, margin: 0 }}>
+          <Tag
+            color="cyan"
+            className="header-msbte-tag"
+            style={{ borderRadius: 12, padding: '0 6px', fontSize: 10, margin: 0 }}
+          >
             MSBTE
           </Tag>
         </div>
       </div>
 
       {/* Right section: theme toggle, role tag, and user profile */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: isMobile ? 8 : 12, flexShrink: 0 }}>
         {/* Theme Mode Toggle */}
         <Tooltip title={isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}>
           <Button
             type="text"
             icon={
               isDark ? (
-                <SunOutlined style={{ color: '#f59e0b', fontSize: 18 }} />
+                <SunOutlined style={{ color: '#f59e0b', fontSize: 17 }} />
               ) : (
-                <MoonOutlined style={{ color: '#0284c7', fontSize: 18 }} />
+                <MoonOutlined style={{ color: '#0284c7', fontSize: 17 }} />
               )
             }
             onClick={toggleTheme}
-            style={{ width: 38, height: 38, borderRadius: 8 }}
+            style={{ width: 36, height: 36, borderRadius: 8, padding: 0 }}
             aria-label="Toggle light/dark theme"
           />
         </Tooltip>
 
         <Tag
           color={user?.role === 'admin' ? 'purple' : 'blue'}
+          className="header-role-tag"
           style={{
             textTransform: 'uppercase',
             fontWeight: 600,
-            padding: '2px 10px',
+            padding: '2px 8px',
             borderRadius: 12,
             margin: 0,
           }}
@@ -119,33 +138,35 @@ const Header = ({ collapsed, setCollapsed }) => {
           <Button
             type="text"
             style={{
-              height: 44,
+              height: 40,
               display: 'flex',
               alignItems: 'center',
               padding: '4px 6px',
               borderRadius: 8,
             }}
           >
-            <Space size={8}>
+            <Space size={6}>
               <Avatar
                 style={{
                   backgroundColor: user?.role === 'admin' ? '#7c3aed' : '#0284c7',
                   verticalAlign: 'middle',
                 }}
                 icon={<UserOutlined />}
+                size="small"
               />
               <div
+                className="header-user-text"
                 style={{
                   textAlign: 'left',
                   display: 'flex',
                   flexDirection: 'column',
-                  maxWidth: 130,
+                  maxWidth: 120,
                   overflow: 'hidden',
                 }}
               >
                 <span
                   style={{
-                    fontSize: 13,
+                    fontSize: 12,
                     fontWeight: 600,
                     color: token.colorText,
                     lineHeight: 1.2,
@@ -158,7 +179,7 @@ const Header = ({ collapsed, setCollapsed }) => {
                 </span>
                 <span
                   style={{
-                    fontSize: 11,
+                    fontSize: 10,
                     color: token.colorTextSecondary,
                     lineHeight: 1.2,
                     textOverflow: 'ellipsis',
@@ -169,7 +190,7 @@ const Header = ({ collapsed, setCollapsed }) => {
                   {user?.email}
                 </span>
               </div>
-              <DownOutlined style={{ fontSize: 10, color: '#94a3b8' }} />
+              <DownOutlined style={{ fontSize: 9, color: '#94a3b8' }} />
             </Space>
           </Button>
         </Dropdown>

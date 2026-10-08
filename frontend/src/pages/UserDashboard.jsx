@@ -194,12 +194,12 @@ const UserDashboard = () => {
               Track daily household water consumption and report civic pipeline issues seamlessly.
             </Paragraph>
           </Col>
-          <Col xs={24} md={8} style={{ textAlign: 'right' }}>
+          <Col xs={24} md={8} className="responsive-banner-col">
             <div style={{ color: '#bae6fd', fontSize: 13, marginBottom: 12 }}>
               <CalendarOutlined style={{ marginRight: 6 }} />
               {currentDateDisplay}
             </div>
-            <Space>
+            <Space wrap className="responsive-banner-actions">
               <Button
                 icon={<ReloadOutlined />}
                 onClick={fetchDashboardData}
@@ -340,6 +340,7 @@ const UserDashboard = () => {
                 rowKey="_id"
                 pagination={false}
                 size="small"
+                scroll={{ x: 420 }}
               />
             )}
           </Card>
@@ -385,6 +386,7 @@ const UserDashboard = () => {
                 rowKey="_id"
                 pagination={false}
                 size="small"
+                scroll={{ x: 400 }}
               />
             )}
           </Card>

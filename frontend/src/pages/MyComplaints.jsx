@@ -277,8 +277,8 @@ const MyComplaints = () => {
               Track the live resolution status of your reported water leakages, supply outages, and quality grievances.
             </Paragraph>
           </Col>
-          <Col xs={24} md={8} style={{ textAlign: 'right' }}>
-            <Space>
+          <Col xs={24} md={8} className="responsive-banner-col">
+            <Space wrap className="responsive-banner-actions">
               <Button
                 icon={<ReloadOutlined />}
                 onClick={fetchComplaints}
@@ -397,13 +397,14 @@ const MyComplaints = () => {
         ]}
         centered
         width={650}
+        style={{ maxWidth: '95vw', top: 20 }}
       >
         {viewingComplaint && (
           <Descriptions
             bordered
             column={1}
             style={{ marginTop: 16 }}
-            labelStyle={{ width: '30%', fontWeight: 600 }}
+            labelStyle={{ fontWeight: 600 }}
           >
             <Descriptions.Item label="Grievance Type">
               <span style={{ fontWeight: 700 }}>{viewingComplaint.type}</span>
@@ -415,10 +416,10 @@ const MyComplaints = () => {
               {renderPriority(viewingComplaint.priority)}
             </Descriptions.Item>
             <Descriptions.Item label="Incident Location">
-              {viewingComplaint.location}
+              <span style={{ wordBreak: 'break-word' }}>{viewingComplaint.location}</span>
             </Descriptions.Item>
             <Descriptions.Item label="Detailed Description">
-              <div style={{ whiteSpace: 'pre-wrap' }}>
+              <div style={{ whiteSpace: 'pre-wrap', wordBreak: 'break-word' }}>
                 {viewingComplaint.description}
               </div>
             </Descriptions.Item>
@@ -440,6 +441,8 @@ const MyComplaints = () => {
         footer={null}
         destroyOnClose
         centered
+        width={560}
+        style={{ maxWidth: '95vw', top: 20 }}
       >
         <Form
           form={editForm}
