@@ -53,10 +53,10 @@ const Login = () => {
           >
             💧
           </div>
-          <Title level={3} style={{ margin: 0, color: '#0f172a', fontWeight: 700 }}>
+          <Title level={3} style={{ margin: 0, fontWeight: 700 }}>
             Welcome to AquaTracker
           </Title>
-          <Text style={{ color: '#64748b', fontSize: 14 }}>
+          <Text type="secondary" style={{ fontSize: 14 }}>
             Sign in to access water monitoring & reporting
           </Text>
         </div>
@@ -80,7 +80,7 @@ const Login = () => {
           autoComplete="off"
         >
           <Form.Item
-            label={<span style={{ fontWeight: 600, color: '#334155' }}>Email Address</span>}
+            label={<span style={{ fontWeight: 600 }}>Email Address</span>}
             name="email"
             rules={[
               { required: true, message: 'Please enter your email' },
@@ -96,7 +96,7 @@ const Login = () => {
           </Form.Item>
 
           <Form.Item
-            label={<span style={{ fontWeight: 600, color: '#334155' }}>Password</span>}
+            label={<span style={{ fontWeight: 600 }}>Password</span>}
             name="password"
             rules={[
               { required: true, message: 'Please enter your password' },
@@ -133,7 +133,7 @@ const Login = () => {
         </Form>
 
         <div style={{ textAlign: 'center', marginTop: 16 }}>
-          <Text style={{ color: '#64748b', fontSize: 14 }}>
+          <Text type="secondary" style={{ fontSize: 14 }}>
             Don't have an account?{' '}
             <Link to="/register" style={{ color: '#0284c7', fontWeight: 600 }}>
               Create Citizen Account

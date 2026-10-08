@@ -101,7 +101,7 @@ const ReportComplaint = () => {
           description="Your complaint will be assigned to municipal maintenance engineers. You can track progress live in the My Complaints section."
           type="info"
           showIcon
-          style={{ marginBottom: 24, borderRadius: 8, background: '#f0f9ff', border: '1px solid #bae6fd' }}
+          style={{ marginBottom: 24, borderRadius: 8 }}
         />
 
         <Form
@@ -115,7 +115,7 @@ const ReportComplaint = () => {
           <Form.Item
             name="type"
             label={
-              <span style={{ fontWeight: 600, color: '#0f172a' }}>
+              <span style={{ fontWeight: 600 }}>
                 <FormOutlined style={{ marginRight: 6, color: '#0284c7' }} />
                 Grievance Category
               </span>
@@ -134,7 +134,7 @@ const ReportComplaint = () => {
           <Form.Item
             name="location"
             label={
-              <span style={{ fontWeight: 600, color: '#0f172a' }}>
+              <span style={{ fontWeight: 600 }}>
                 <EnvironmentOutlined style={{ marginRight: 6, color: '#0284c7' }} />
                 Incident Location & Landmark
               </span>
@@ -154,7 +154,7 @@ const ReportComplaint = () => {
           {/* Priority */}
           <Form.Item
             name="priority"
-            label={<span style={{ fontWeight: 600, color: '#0f172a' }}>Urgency Level</span>}
+            label={<span style={{ fontWeight: 600 }}>Urgency Level</span>}
             rules={[{ required: true, message: 'Please select priority' }]}
           >
             <Radio.Group buttonStyle="solid" size="large">
@@ -170,7 +170,7 @@ const ReportComplaint = () => {
           <Form.Item
             name="description"
             label={
-              <span style={{ fontWeight: 600, color: '#0f172a' }}>
+              <span style={{ fontWeight: 600 }}>
                 <FileTextOutlined style={{ marginRight: 6, color: '#0284c7' }} />
                 Detailed Description
               </span>

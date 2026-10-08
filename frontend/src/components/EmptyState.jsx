@@ -1,5 +1,5 @@
 import React from 'react';
-import { Result, Button } from 'antd';
+import { Result, Button, theme } from 'antd';
 import { useNavigate } from 'react-router-dom';
 
 const EmptyState = ({
@@ -11,13 +11,21 @@ const EmptyState = ({
   extra,
 }) => {
   const navigate = useNavigate();
+  const { token } = theme.useToken();
 
   return (
-    <div style={{ padding: '32px 16px', background: '#fff', borderRadius: 10, border: '1px solid #e2e8f0' }}>
+    <div
+      style={{
+        padding: '32px 16px',
+        background: token.colorBgContainer,
+        borderRadius: 10,
+        border: `1px solid ${token.colorBorderSecondary || '#e2e8f0'}`,
+      }}
+    >
       <Result
         status={status}
-        title={<span style={{ color: '#0f172a', fontWeight: 600 }}>{title}</span>}
-        subTitle={<span style={{ color: '#64748b' }}>{subTitle}</span>}
+        title={<span style={{ color: token.colorTextHeading, fontWeight: 600 }}>{title}</span>}
+        subTitle={<span style={{ color: token.colorTextSecondary }}>{subTitle}</span>}
         extra={
           extra ||
           (actionText && actionLink ? (

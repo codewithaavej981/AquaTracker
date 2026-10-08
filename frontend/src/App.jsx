@@ -61,13 +61,21 @@ function App() {
         ? {
             colorBgLayout: '#0b1329',
             colorBgContainer: '#162035',
+            colorBgElevated: '#1a2744',
             colorText: '#f8fafc',
+            colorTextHeading: '#ffffff',
+            colorTextSecondary: '#94a3b8',
+            colorBorder: '#233354',
             colorBorderSecondary: '#1e293b',
           }
         : {
             colorBgLayout: '#f8fafc',
             colorBgContainer: '#ffffff',
+            colorBgElevated: '#ffffff',
             colorText: '#0f172a',
+            colorTextHeading: '#0f172a',
+            colorTextSecondary: '#64748b',
+            colorBorder: '#cbd5e1',
             colorBorderSecondary: '#e2e8f0',
           }),
     },
@@ -87,6 +95,9 @@ function App() {
       },
       Table: {
         borderRadius: 8,
+      },
+      Descriptions: {
+        colorSplit: isDark ? '#233354' : '#f0f0f0',
       },
     },
   };

@@ -9,8 +9,6 @@ import {
   Tag,
   Space,
   Spin,
-  Alert,
-  Progress,
   message,
 } from 'antd';
 import {
@@ -22,7 +20,6 @@ import {
   CheckCircleOutlined,
   ArrowRightOutlined,
   ReloadOutlined,
-  SafetyCertificateOutlined,
 } from '@ant-design/icons';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
@@ -60,12 +57,6 @@ const AdminDashboard = () => {
   useEffect(() => {
     fetchStats();
   }, []);
-
-  // Compute complaint resolution progress percentage
-  const resolutionRate =
-    stats.totalComplaints > 0
-      ? Math.round((stats.resolvedComplaints / stats.totalComplaints) * 100)
-      : 100;
 
   return (
     <div style={{ maxWidth: 1200, margin: '0 auto' }}>
@@ -126,13 +117,13 @@ const AdminDashboard = () => {
           <Col xs={24} sm={12} lg={6}>
             <Card className="aqua-card">
               <Statistic
-                title={<span style={{ color: '#64748b', fontWeight: 500 }}>Total Registered Users</span>}
+                title={<Text type="secondary" style={{ fontWeight: 500 }}>Total Registered Users</Text>}
                 value={stats.totalUsers}
                 prefix={<TeamOutlined style={{ color: '#0284c7' }} />}
-                valueStyle={{ color: '#0f172a', fontWeight: 700 }}
+                valueStyle={{ fontWeight: 700 }}
               />
               <div style={{ marginTop: 12, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <span style={{ fontSize: 12, color: '#94a3b8' }}>Verified accounts</span>
+                <Text type="secondary" style={{ fontSize: 12 }}>Verified accounts</Text>
                 <Button type="link" size="small" onClick={() => navigate('/admin/users')}>
                   View Directory &rarr;
                 </Button>
@@ -144,13 +135,13 @@ const AdminDashboard = () => {
           <Col xs={24} sm={12} lg={6}>
             <Card className="aqua-card">
               <Statistic
-                title={<span style={{ color: '#64748b', fontWeight: 500 }}>Consumption Records</span>}
+                title={<Text type="secondary" style={{ fontWeight: 500 }}>Consumption Records</Text>}
                 value={stats.totalConsumptionRecords}
                 prefix={<ExperimentOutlined style={{ color: '#0ea5e9' }} />}
-                valueStyle={{ color: '#0f172a', fontWeight: 700 }}
+                valueStyle={{ fontWeight: 700 }}
               />
-              <div style={{ marginTop: 12, fontSize: 12, color: '#94a3b8' }}>
-                Total daily intake submissions
+              <div style={{ marginTop: 12, fontSize: 12 }}>
+                <Text type="secondary">Total daily intake submissions</Text>
               </div>
             </Card>
           </Col>
@@ -159,13 +150,13 @@ const AdminDashboard = () => {
           <Col xs={24} sm={12} lg={6}>
             <Card className="aqua-card">
               <Statistic
-                title={<span style={{ color: '#64748b', fontWeight: 500 }}>Total Complaints</span>}
+                title={<Text type="secondary" style={{ fontWeight: 500 }}>Total Complaints</Text>}
                 value={stats.totalComplaints}
                 prefix={<AlertOutlined style={{ color: '#f59e0b' }} />}
-                valueStyle={{ color: '#0f172a', fontWeight: 700 }}
+                valueStyle={{ fontWeight: 700 }}
               />
               <div style={{ marginTop: 12, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <span style={{ fontSize: 12, color: '#94a3b8' }}>All reported issues</span>
+                <Text type="secondary" style={{ fontSize: 12 }}>All reported issues</Text>
                 <Button type="link" size="small" onClick={() => navigate('/admin/complaints')}>
                   Manage &rarr;
                 </Button>
@@ -177,13 +168,13 @@ const AdminDashboard = () => {
           <Col xs={24} sm={12} lg={6}>
             <Card className="aqua-card">
               <Statistic
-                title={<span style={{ color: '#64748b', fontWeight: 500 }}>Pending Complaints</span>}
+                title={<Text type="secondary" style={{ fontWeight: 500 }}>Pending Complaints</Text>}
                 value={stats.pendingComplaints}
                 prefix={<ClockCircleOutlined style={{ color: '#ef4444' }} />}
                 valueStyle={{ color: '#ef4444', fontWeight: 700 }}
               />
-              <div style={{ marginTop: 12, fontSize: 12, color: '#94a3b8' }}>
-                Requiring review & triage
+              <div style={{ marginTop: 12, fontSize: 12 }}>
+                <Text type="secondary">Requiring review & triage</Text>
               </div>
             </Card>
           </Col>
@@ -194,50 +185,50 @@ const AdminDashboard = () => {
       <Card
         className="aqua-card"
         title={
-          <span style={{ fontWeight: 600, color: '#0f172a' }}>
+          <span style={{ fontWeight: 600 }}>
             📊 Grievance Status Summary (Real Database Distribution)
           </span>
         }
         style={{ marginBottom: 24 }}
       >
-        <Row gutter={[24, 24]} align="middle">
+        <Row gutter={[16, 16]} align="middle">
           <Col xs={24} md={8}>
-            <Card style={{ background: '#fffbeb', border: '1px solid #fde68a', borderRadius: 8 }}>
+            <Card className="aqua-card">
               <Statistic
-                title={<span style={{ color: '#b45309', fontWeight: 600 }}>Pending Review</span>}
+                title={<span style={{ color: '#f59e0b', fontWeight: 600 }}>Pending Review</span>}
                 value={stats.pendingComplaints}
                 prefix={<ClockCircleOutlined style={{ color: '#f59e0b' }} />}
-                valueStyle={{ color: '#b45309', fontWeight: 700 }}
+                valueStyle={{ fontWeight: 700 }}
               />
-              <Text style={{ fontSize: 12, color: '#78350f' }}>
+              <Text type="secondary" style={{ fontSize: 12 }}>
                 Awaiting technician dispatch
               </Text>
             </Card>
           </Col>
 
           <Col xs={24} md={8}>
-            <Card style={{ background: '#eff6ff', border: '1px solid #bfdbfe', borderRadius: 8 }}>
+            <Card className="aqua-card">
               <Statistic
-                title={<span style={{ color: '#1d4ed8', fontWeight: 600 }}>In Progress</span>}
+                title={<span style={{ color: '#0284c7', fontWeight: 600 }}>In Progress</span>}
                 value={stats.inProgressComplaints}
                 prefix={<SyncOutlined spin={stats.inProgressComplaints > 0} style={{ color: '#0284c7' }} />}
-                valueStyle={{ color: '#1d4ed8', fontWeight: 700 }}
+                valueStyle={{ fontWeight: 700 }}
               />
-              <Text style={{ fontSize: 12, color: '#1e3a8a' }}>
+              <Text type="secondary" style={{ fontSize: 12 }}>
                 Maintenance currently active
               </Text>
             </Card>
           </Col>
 
           <Col xs={24} md={8}>
-            <Card style={{ background: '#ecfdf5', border: '1px solid #a7f3d0', borderRadius: 8 }}>
+            <Card className="aqua-card">
               <Statistic
-                title={<span style={{ color: '#047857', fontWeight: 600 }}>Resolved</span>}
+                title={<span style={{ color: '#10b981', fontWeight: 600 }}>Resolved</span>}
                 value={stats.resolvedComplaints}
                 prefix={<CheckCircleOutlined style={{ color: '#10b981' }} />}
-                valueStyle={{ color: '#047857', fontWeight: 700 }}
+                valueStyle={{ fontWeight: 700 }}
               />
-              <Text style={{ fontSize: 12, color: '#064e3b' }}>
+              <Text type="secondary" style={{ fontSize: 12 }}>
                 Work orders successfully completed
               </Text>
             </Card>
@@ -250,14 +241,14 @@ const AdminDashboard = () => {
         <Col xs={24} md={12}>
           <Card
             className="aqua-card"
-            title={<span style={{ fontWeight: 600, color: '#0f172a' }}>👥 Registered Users Directory</span>}
+            title={<span style={{ fontWeight: 600 }}>👥 Registered Users Directory</span>}
             extra={
               <Button type="link" onClick={() => navigate('/admin/users')}>
                 Open Directory <ArrowRightOutlined />
               </Button>
             }
           >
-            <Paragraph style={{ color: '#64748b' }}>
+            <Paragraph type="secondary">
               View all citizen profiles, email accounts, assigned roles, and registration dates stored in MongoDB Atlas.
             </Paragraph>
             <Button
@@ -273,14 +264,14 @@ const AdminDashboard = () => {
         <Col xs={24} md={12}>
           <Card
             className="aqua-card"
-            title={<span style={{ fontWeight: 600, color: '#0f172a' }}>📋 Community Complaints Redressal</span>}
+            title={<span style={{ fontWeight: 600 }}>📋 Community Complaints Redressal</span>}
             extra={
               <Button type="link" onClick={() => navigate('/admin/complaints')}>
                 Review Complaints <ArrowRightOutlined />
               </Button>
             }
           >
-            <Paragraph style={{ color: '#64748b' }}>
+            <Paragraph type="secondary">
               Inspect water pipeline damage, leakages, and contamination reports across all wards. Update resolution statuses from Pending to Resolved.
             </Paragraph>
             <Button

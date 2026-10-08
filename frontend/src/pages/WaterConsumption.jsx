@@ -16,6 +16,7 @@ import {
   message,
   Statistic,
   Alert,
+  theme,
 } from 'antd';
 import {
   PlusOutlined,
@@ -49,6 +50,7 @@ const WaterConsumption = () => {
   const [submitting, setSubmitting] = useState(false);
   const [editingRecord, setEditingRecord] = useState(null);
   const [form] = Form.useForm();
+  const { token } = theme.useToken();
 
   // Watch form fields for live total preview in modal
   const morningVal = Form.useWatch('morning', form) || 0;
@@ -166,7 +168,7 @@ const WaterConsumption = () => {
       render: (date) => (
         <Space>
           <CalendarOutlined style={{ color: '#0284c7' }} />
-          <span style={{ fontWeight: 600, color: '#0f172a' }}>{date}</span>
+          <span style={{ fontWeight: 600 }}>{date}</span>
           {date === todayStr && <Tag color="blue">Today</Tag>}
         </Space>
       ),
@@ -301,42 +303,48 @@ const WaterConsumption = () => {
         <Col xs={24} sm={8}>
           <Card className="aqua-card">
             <Statistic
-              title={<span style={{ color: '#64748b' }}>Today's Intake</span>}
+              title={<Text type="secondary">Today's Intake</Text>}
               value={todayEntry ? todayEntry.total : '--'}
               suffix={todayEntry ? 'Litres' : ''}
               prefix={<ExperimentOutlined style={{ color: '#0284c7' }} />}
-              valueStyle={{ color: '#0f172a', fontWeight: 700 }}
+              valueStyle={{ fontWeight: 700 }}
             />
-            <div style={{ fontSize: 12, color: '#94a3b8', marginTop: 8 }}>
-              {todayEntry ? 'Logged for today' : 'No entry recorded for today yet'}
+            <div style={{ marginTop: 8 }}>
+              <Text type="secondary" style={{ fontSize: 12 }}>
+                {todayEntry ? 'Logged for today' : 'No entry recorded for today yet'}
+              </Text>
             </div>
           </Card>
         </Col>
         <Col xs={24} sm={8}>
           <Card className="aqua-card">
             <Statistic
-              title={<span style={{ color: '#64748b' }}>Average Daily Intake</span>}
+              title={<Text type="secondary">Average Daily Intake</Text>}
               value={records.length > 0 ? avgDaily : '--'}
               suffix={records.length > 0 ? 'L / day' : ''}
               prefix={<BarChartOutlined style={{ color: '#0ea5e9' }} />}
-              valueStyle={{ color: '#0f172a', fontWeight: 700 }}
+              valueStyle={{ fontWeight: 700 }}
             />
-            <div style={{ fontSize: 12, color: '#94a3b8', marginTop: 8 }}>
-              Calculated across {records.length} logged days
+            <div style={{ marginTop: 8 }}>
+              <Text type="secondary" style={{ fontSize: 12 }}>
+                Calculated across {records.length} logged days
+              </Text>
             </div>
           </Card>
         </Col>
         <Col xs={24} sm={8}>
           <Card className="aqua-card">
             <Statistic
-              title={<span style={{ color: '#64748b' }}>Total Volume Monitored</span>}
+              title={<Text type="secondary">Total Volume Monitored</Text>}
               value={records.length > 0 ? totalVolume.toFixed(1) : '--'}
               suffix={records.length > 0 ? 'Litres' : ''}
               prefix={<ExperimentOutlined style={{ color: '#10b981' }} />}
               valueStyle={{ color: '#10b981', fontWeight: 700 }}
             />
-            <div style={{ fontSize: 12, color: '#94a3b8', marginTop: 8 }}>
-              Lifetime total logged in AquaTracker
+            <div style={{ marginTop: 8 }}>
+              <Text type="secondary" style={{ fontSize: 12 }}>
+                Lifetime total logged in AquaTracker
+              </Text>
             </div>
           </Card>
         </Col>
@@ -349,7 +357,7 @@ const WaterConsumption = () => {
           title={
             <Space>
               <BarChartOutlined style={{ color: '#0284c7' }} />
-              <span style={{ fontWeight: 600, color: '#0f172a' }}>Daily Consumption Trend</span>
+              <span style={{ fontWeight: 600 }}>Daily Consumption Trend</span>
             </Space>
           }
           style={{ marginBottom: 24 }}
@@ -357,7 +365,7 @@ const WaterConsumption = () => {
           <div style={{ width: '100%', height: 260 }}>
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={chartData} margin={{ top: 10, right: 20, left: 0, bottom: 0 }}>
-                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
+                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke={token.colorBorderSecondary || '#f1f5f9'} />
                 <XAxis dataIndex="date" dataKey="date" stroke="#94a3b8" fontSize={12} />
                 <YAxis stroke="#94a3b8" fontSize={12} unit="L" />
                 <Tooltip
@@ -367,20 +375,21 @@ const WaterConsumption = () => {
                       return (
                         <div
                           style={{
-                            background: '#ffffff',
+                            background: token.colorBgElevated || '#ffffff',
+                            color: token.colorText,
                             padding: '10px 14px',
                             borderRadius: 8,
-                            border: '1px solid #e2e8f0',
-                            boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1)',
+                            border: `1px solid ${token.colorBorderSecondary || '#e2e8f0'}`,
+                            boxShadow: '0 4px 6px -1px rgba(0,0,0,0.2)',
                           }}
                         >
-                          <div style={{ fontWeight: 700, color: '#0f172a', marginBottom: 4 }}>
+                          <div style={{ fontWeight: 700, marginBottom: 4, color: token.colorTextHeading }}>
                             {data.fullDate}
                           </div>
                           <div style={{ color: '#0284c7', fontWeight: 600 }}>
                             Total: {data.total} Litres
                           </div>
-                          <div style={{ fontSize: 12, color: '#64748b', marginTop: 4 }}>
+                          <div style={{ fontSize: 12, color: token.colorTextSecondary, marginTop: 4 }}>
                             Morning: {data.morning}L | Afternoon: {data.afternoon}L | Evening: {data.evening}L
                           </div>
                         </div>
@@ -400,7 +409,7 @@ const WaterConsumption = () => {
       <Card
         className="aqua-card"
         title={
-          <span style={{ fontWeight: 600, color: '#0f172a' }}>
+          <span style={{ fontWeight: 600 }}>
             📋 Consumption History Logs ({records.length})
           </span>
         }
@@ -422,7 +431,7 @@ const WaterConsumption = () => {
             dataSource={records}
             rowKey="_id"
             pagination={{ pageSize: 8, showSizeChanger: false }}
-            responsive
+            scroll={{ x: 600 }}
           />
         )}
       </Card>
@@ -430,7 +439,7 @@ const WaterConsumption = () => {
       {/* Add / Edit Consumption Modal */}
       <Modal
         title={
-          <span style={{ fontWeight: 700, color: '#0f172a' }}>
+          <span style={{ fontWeight: 700 }}>
             {editingRecord ? '✏️ Edit Water Consumption' : '💧 Log Daily Water Consumption'}
           </span>
         }
@@ -506,7 +515,7 @@ const WaterConsumption = () => {
           <Alert
             message={
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <span style={{ fontWeight: 600, color: '#0369a1' }}>Calculated Total Intake:</span>
+                <span style={{ fontWeight: 600 }}>Calculated Total Intake:</span>
                 <span style={{ fontSize: 16, fontWeight: 700, color: '#0284c7' }}>
                   {liveTotal} Litres
                 </span>
@@ -515,7 +524,7 @@ const WaterConsumption = () => {
             description="The backend strictly re-computes total = morning + afternoon + evening."
             type="info"
             showIcon
-            style={{ marginBottom: 20, borderRadius: 8, background: '#f0f9ff', border: '1px solid #bae6fd' }}
+            style={{ marginBottom: 20, borderRadius: 8 }}
           />
 
           <Form.Item style={{ marginBottom: 0, textAlign: 'right' }}>
