@@ -8,6 +8,8 @@ const express = require('express');
 const cors = require('cors');
 const connectDB = require('./config/db');
 const authRoutes = require('./routes/authRoutes');
+const consumptionRoutes = require('./routes/consumptionRoutes');
+const complaintRoutes = require('./routes/complaintRoutes');
 
 const app = express();
 
@@ -26,13 +28,15 @@ app.get('/api/health', (req, res) => {
   res.status(200).json({
     status: 'ok',
     project: 'AquaTracker API',
-    phase: 'Phase 1 - Authentication & Foundation',
+    phase: 'Phase 2 - Core Water Monitoring & Complaint System',
     timestamp: new Date().toISOString(),
   });
 });
 
 // Mount Routes
 app.use('/api/auth', authRoutes);
+app.use('/api/consumption', consumptionRoutes);
+app.use('/api/complaints', complaintRoutes);
 
 // Fallback for undefined routes
 app.use('*', (req, res) => {

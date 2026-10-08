@@ -9,11 +9,11 @@ import ProtectedRoute from './components/ProtectedRoute';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import UserDashboard from './pages/UserDashboard';
+import WaterConsumption from './pages/WaterConsumption';
+import MyComplaints from './pages/MyComplaints';
+import ReportComplaint from './pages/ReportComplaint';
 import AdminDashboard from './pages/AdminDashboard';
 import Profile from './pages/Profile';
-import WaterConsumptionPlaceholder from './pages/WaterConsumptionPlaceholder';
-import MyComplaintsPlaceholder from './pages/MyComplaintsPlaceholder';
-import ReportComplaintPlaceholder from './pages/ReportComplaintPlaceholder';
 import AdminUsersPlaceholder from './pages/AdminUsersPlaceholder';
 import AdminComplaintsPlaceholder from './pages/AdminComplaintsPlaceholder';
 import NotFound from './pages/NotFound';
@@ -94,9 +94,17 @@ function App() {
               </ProtectedRoute>
             }
           />
-          <Route path="/consumption" element={<WaterConsumptionPlaceholder />} />
-          <Route path="/my-complaints" element={<MyComplaintsPlaceholder />} />
-          <Route path="/report-complaint" element={<ReportComplaintPlaceholder />} />
+
+          {/* Water Consumption Routes */}
+          <Route path="/water-consumption" element={<WaterConsumption />} />
+          <Route path="/consumption" element={<Navigate to="/water-consumption" replace />} />
+
+          {/* Complaints Routes */}
+          <Route path="/complaints" element={<MyComplaints />} />
+          <Route path="/my-complaints" element={<Navigate to="/complaints" replace />} />
+          <Route path="/report-complaint" element={<ReportComplaint />} />
+
+          {/* User Profile */}
           <Route path="/profile" element={<Profile />} />
 
           {/* Admin Protected Routes */}
