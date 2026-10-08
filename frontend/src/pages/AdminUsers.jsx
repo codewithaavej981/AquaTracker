@@ -72,7 +72,7 @@ const AdminUsers = () => {
             icon={<UserOutlined />}
             size="small"
           />
-          <span style={{ fontWeight: 600, color: '#0f172a' }}>{name}</span>
+          <span style={{ fontWeight: 600 }}>{name}</span>
         </Space>
       ),
       sorter: (a, b) => (a.name || '').localeCompare(b.name || ''),
@@ -83,7 +83,7 @@ const AdminUsers = () => {
       key: 'email',
       render: (email) => (
         <Space>
-          <MailOutlined style={{ color: '#94a3b8' }} />
+          <MailOutlined style={{ color: '#0284c7' }} />
           <span>{email}</span>
         </Space>
       ),
@@ -117,7 +117,7 @@ const AdminUsers = () => {
       key: 'createdAt',
       render: (date) => (
         <Space>
-          <CalendarOutlined style={{ color: '#94a3b8' }} />
+          <CalendarOutlined style={{ color: '#0284c7' }} />
           <span>{dayjs(date).format('YYYY-MM-DD HH:mm')}</span>
         </Space>
       ),
@@ -174,7 +174,7 @@ const AdminUsers = () => {
         title={
           <Space>
             <TeamOutlined style={{ color: '#0284c7' }} />
-            <span style={{ fontWeight: 600, color: '#0f172a' }}>
+            <span style={{ fontWeight: 600 }}>
               All Registered Accounts ({filteredUsers.length} of {users.length})
             </span>
           </Space>

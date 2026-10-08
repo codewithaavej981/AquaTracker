@@ -14,10 +14,8 @@ import {
   Radio,
   Descriptions,
   message,
-  Popconfirm,
 } from 'antd';
 import {
-  AlertOutlined,
   EyeOutlined,
   EditOutlined,
   ReloadOutlined,
@@ -26,7 +24,6 @@ import {
   SyncOutlined,
   CheckCircleOutlined,
   UserOutlined,
-  MailOutlined,
   EnvironmentOutlined,
 } from '@ant-design/icons';
 import dayjs from 'dayjs';
@@ -154,7 +151,7 @@ const AdminComplaints = () => {
       title: 'Complaint Category',
       dataIndex: 'type',
       key: 'type',
-      render: (type) => <span style={{ fontWeight: 600, color: '#0f172a' }}>{type}</span>,
+      render: (type) => <span style={{ fontWeight: 600 }}>{type}</span>,
     },
     {
       title: 'Citizen',
@@ -164,10 +161,10 @@ const AdminComplaints = () => {
         const citizenEmail = record.userId?.email || 'N/A';
         return (
           <div style={{ display: 'flex', flexDirection: 'column' }}>
-            <span style={{ fontWeight: 600, color: '#0f172a', fontSize: 13 }}>
+            <span style={{ fontWeight: 600, fontSize: 13 }}>
               {citizenName}
             </span>
-            <span style={{ color: '#64748b', fontSize: 11 }}>{citizenEmail}</span>
+            <Text type="secondary" style={{ fontSize: 11 }}>{citizenEmail}</Text>
           </div>
         );
       },
@@ -177,7 +174,7 @@ const AdminComplaints = () => {
       dataIndex: 'location',
       key: 'location',
       ellipsis: true,
-      render: (loc) => <span style={{ color: '#334155' }}>{loc}</span>,
+      render: (loc) => <span>{loc}</span>,
     },
     {
       title: 'Priority',
@@ -277,7 +274,7 @@ const AdminComplaints = () => {
           <Col xs={24} sm={14}>
             <Space wrap size="middle">
               <div>
-                <Text style={{ fontWeight: 600, marginRight: 8, color: '#64748b' }}>
+                <Text type="secondary" style={{ fontWeight: 600, marginRight: 8 }}>
                   <FilterOutlined style={{ marginRight: 4 }} />
                   Filter Status:
                 </Text>
@@ -295,7 +292,7 @@ const AdminComplaints = () => {
               </div>
 
               <div>
-                <Text style={{ fontWeight: 600, marginRight: 8, color: '#64748b' }}>
+                <Text type="secondary" style={{ fontWeight: 600, marginRight: 8 }}>
                   Priority:
                 </Text>
                 <Select
@@ -314,7 +311,7 @@ const AdminComplaints = () => {
           </Col>
 
           <Col xs={24} sm={10} style={{ textAlign: 'right' }}>
-            <Text style={{ color: '#64748b', fontSize: 13 }}>
+            <Text type="secondary" style={{ fontSize: 13 }}>
               Displaying <b>{complaints.length}</b> grievances
             </Text>
           </Col>
@@ -342,7 +339,7 @@ const AdminComplaints = () => {
       {/* View Complaint Details Modal */}
       <Modal
         title={
-          <span style={{ fontWeight: 700, color: '#0f172a' }}>
+          <span style={{ fontWeight: 700 }}>
             🔍 Complaint Case #{viewingComplaint?._id.slice(-6)}
           </span>
         }
@@ -373,10 +370,10 @@ const AdminComplaints = () => {
             bordered
             column={1}
             style={{ marginTop: 16 }}
-            labelStyle={{ width: '32%', fontWeight: 600, color: '#334155', background: '#f8fafc' }}
+            labelStyle={{ width: '32%', fontWeight: 600 }}
           >
             <Descriptions.Item label="Grievance Category">
-              <span style={{ fontWeight: 700, color: '#0f172a' }}>{viewingComplaint.type}</span>
+              <span style={{ fontWeight: 700 }}>{viewingComplaint.type}</span>
             </Descriptions.Item>
             <Descriptions.Item label="Citizen Applicant">
               <Space>
@@ -399,7 +396,7 @@ const AdminComplaints = () => {
               </Space>
             </Descriptions.Item>
             <Descriptions.Item label="Problem Description">
-              <div style={{ whiteSpace: 'pre-wrap', color: '#334155', lineHeight: 1.6 }}>
+              <div style={{ whiteSpace: 'pre-wrap', lineHeight: 1.6 }}>
                 {viewingComplaint.description}
               </div>
             </Descriptions.Item>
@@ -416,7 +413,7 @@ const AdminComplaints = () => {
       {/* Update Complaint Status Modal (Admin Only) */}
       <Modal
         title={
-          <span style={{ fontWeight: 700, color: '#0f172a' }}>
+          <span style={{ fontWeight: 700 }}>
             🛠️ Update Complaint Status #{selectedComplaint?._id.slice(-6)}
           </span>
         }
@@ -427,7 +424,7 @@ const AdminComplaints = () => {
         centered
       >
         <div style={{ marginBottom: 16, marginTop: 8 }}>
-          <Text style={{ color: '#64748b' }}>
+          <Text type="secondary">
             Category: <b>{selectedComplaint?.type}</b> | Location: <b>{selectedComplaint?.location}</b>
           </Text>
         </div>

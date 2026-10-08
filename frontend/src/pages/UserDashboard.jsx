@@ -9,7 +9,6 @@ import {
   Tag,
   Space,
   Table,
-  Badge,
   Spin,
 } from 'antd';
 import {
@@ -86,7 +85,7 @@ const UserDashboard = () => {
       dataIndex: 'date',
       key: 'date',
       render: (date) => (
-        <span style={{ fontWeight: 600, color: '#0f172a' }}>
+        <span style={{ fontWeight: 600 }}>
           {date} {date === todayStr && <Tag color="blue">Today</Tag>}
         </span>
       ),
@@ -233,13 +232,15 @@ const UserDashboard = () => {
           <Col xs={24} sm={12} lg={6}>
             <Card className="aqua-card">
               <Statistic
-                title={<span style={{ color: '#64748b', fontWeight: 500 }}>Today's Water Intake</span>}
+                title={<Text type="secondary" style={{ fontWeight: 500 }}>Today's Water Intake</Text>}
                 value={todayValue}
                 prefix={<ExperimentOutlined style={{ color: '#0284c7' }} />}
-                valueStyle={{ color: '#0f172a', fontWeight: 700, fontSize: 22 }}
+                valueStyle={{ fontWeight: 700, fontSize: 22 }}
               />
-              <div style={{ marginTop: 12, fontSize: 12, color: '#94a3b8' }}>
-                {todayRecord ? 'Real log from database' : 'No consumption logged today'}
+              <div style={{ marginTop: 12 }}>
+                <Text type="secondary" style={{ fontSize: 12 }}>
+                  {todayRecord ? 'Real log from database' : 'No consumption logged today'}
+                </Text>
               </div>
             </Card>
           </Col>
@@ -248,13 +249,15 @@ const UserDashboard = () => {
           <Col xs={24} sm={12} lg={6}>
             <Card className="aqua-card">
               <Statistic
-                title={<span style={{ color: '#64748b', fontWeight: 500 }}>Monthly Average</span>}
+                title={<Text type="secondary" style={{ fontWeight: 500 }}>Monthly Average</Text>}
                 value={monthlyAvgValue}
                 prefix={<ExperimentOutlined style={{ color: '#0ea5e9' }} />}
-                valueStyle={{ color: '#0f172a', fontWeight: 700, fontSize: 22 }}
+                valueStyle={{ fontWeight: 700, fontSize: 22 }}
               />
-              <div style={{ marginTop: 12, fontSize: 12, color: '#94a3b8' }}>
-                {monthRecords.length > 0 ? `Computed from ${monthRecords.length} day(s)` : 'No logs recorded this month'}
+              <div style={{ marginTop: 12 }}>
+                <Text type="secondary" style={{ fontSize: 12 }}>
+                  {monthRecords.length > 0 ? `Computed from ${monthRecords.length} day(s)` : 'No logs recorded this month'}
+                </Text>
               </div>
             </Card>
           </Col>
@@ -263,13 +266,15 @@ const UserDashboard = () => {
           <Col xs={24} sm={12} lg={6}>
             <Card className="aqua-card">
               <Statistic
-                title={<span style={{ color: '#64748b', fontWeight: 500 }}>Active Complaints</span>}
+                title={<Text type="secondary" style={{ fontWeight: 500 }}>Active Complaints</Text>}
                 value={`${activeComplaintsCount} Active Complaints`}
                 prefix={<AlertOutlined style={{ color: '#f59e0b' }} />}
-                valueStyle={{ color: '#0f172a', fontWeight: 700, fontSize: 20 }}
+                valueStyle={{ fontWeight: 700, fontSize: 20 }}
               />
-              <div style={{ marginTop: 12, fontSize: 12, color: '#94a3b8' }}>
-                {activeComplaintsCount > 0 ? 'Pending or in maintenance' : '0 unresolved grievances'}
+              <div style={{ marginTop: 12 }}>
+                <Text type="secondary" style={{ fontSize: 12 }}>
+                  {activeComplaintsCount > 0 ? 'Pending or in maintenance' : '0 unresolved grievances'}
+                </Text>
               </div>
             </Card>
           </Col>
@@ -278,13 +283,15 @@ const UserDashboard = () => {
           <Col xs={24} sm={12} lg={6}>
             <Card className="aqua-card">
               <Statistic
-                title={<span style={{ color: '#64748b', fontWeight: 500 }}>Account Standing</span>}
+                title={<Text type="secondary" style={{ fontWeight: 500 }}>Account Standing</Text>}
                 value="Active"
                 prefix={<CheckCircleOutlined style={{ color: '#10b981' }} />}
                 valueStyle={{ color: '#10b981', fontWeight: 700, fontSize: 22 }}
               />
-              <div style={{ marginTop: 12, fontSize: 12, color: '#94a3b8' }}>
-                Verified Citizen Account
+              <div style={{ marginTop: 12 }}>
+                <Text type="secondary" style={{ fontSize: 12 }}>
+                  Verified Citizen Account
+                </Text>
               </div>
             </Card>
           </Col>
@@ -300,7 +307,7 @@ const UserDashboard = () => {
             title={
               <Space>
                 <ExperimentOutlined style={{ color: '#0284c7' }} />
-                <span style={{ fontWeight: 600, color: '#0f172a' }}>
+                <span style={{ fontWeight: 600 }}>
                   Recent Water Consumption Logs
                 </span>
               </Space>
@@ -345,7 +352,7 @@ const UserDashboard = () => {
             title={
               <Space>
                 <AlertOutlined style={{ color: '#f59e0b' }} />
-                <span style={{ fontWeight: 600, color: '#0f172a' }}>
+                <span style={{ fontWeight: 600 }}>
                   Recent Reported Grievances
                 </span>
               </Space>

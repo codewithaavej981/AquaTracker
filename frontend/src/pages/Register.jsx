@@ -50,10 +50,10 @@ const Register = () => {
           >
             💧
           </div>
-          <Title level={3} style={{ margin: 0, color: '#0f172a', fontWeight: 700 }}>
+          <Title level={3} style={{ margin: 0, fontWeight: 700 }}>
             Create Citizen Account
           </Title>
-          <Text style={{ color: '#64748b', fontSize: 14 }}>
+          <Text type="secondary" style={{ fontSize: 14 }}>
             Register to monitor household water & log grievances
           </Text>
         </div>
@@ -77,7 +77,7 @@ const Register = () => {
           autoComplete="off"
         >
           <Form.Item
-            label={<span style={{ fontWeight: 600, color: '#334155' }}>Full Name</span>}
+            label={<span style={{ fontWeight: 600 }}>Full Name</span>}
             name="name"
             rules={[
               { required: true, message: 'Please enter your full name' },
@@ -93,7 +93,7 @@ const Register = () => {
           </Form.Item>
 
           <Form.Item
-            label={<span style={{ fontWeight: 600, color: '#334155' }}>Email Address</span>}
+            label={<span style={{ fontWeight: 600 }}>Email Address</span>}
             name="email"
             rules={[
               { required: true, message: 'Please enter your email' },
@@ -109,7 +109,7 @@ const Register = () => {
           </Form.Item>
 
           <Form.Item
-            label={<span style={{ fontWeight: 600, color: '#334155' }}>Password</span>}
+            label={<span style={{ fontWeight: 600 }}>Password</span>}
             name="password"
             rules={[
               { required: true, message: 'Please create a password' },
@@ -125,7 +125,7 @@ const Register = () => {
           </Form.Item>
 
           <Form.Item
-            label={<span style={{ fontWeight: 600, color: '#334155' }}>Confirm Password</span>}
+            label={<span style={{ fontWeight: 600 }}>Confirm Password</span>}
             name="confirmPassword"
             dependencies={['password']}
             rules={[
@@ -170,7 +170,7 @@ const Register = () => {
         </Form>
 
         <div style={{ textAlign: 'center', marginTop: 16 }}>
-          <Text style={{ color: '#64748b', fontSize: 14 }}>
+          <Text type="secondary" style={{ fontSize: 14 }}>
             Already registered?{' '}
             <Link to="/login" style={{ color: '#0284c7', fontWeight: 600 }}>
               Sign In here

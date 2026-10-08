@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Descriptions, Tag, Typography, Button, Space, Avatar } from 'antd';
+import { Card, Descriptions, Tag, Typography, Button, Space, Avatar, theme } from 'antd';
 import { UserOutlined, MailOutlined, SafetyOutlined, CalendarOutlined, LogoutOutlined } from '@ant-design/icons';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
@@ -9,6 +9,7 @@ const { Title, Text } = Typography;
 const Profile = () => {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
+  const { token } = theme.useToken();
 
   const handleLogout = () => {
     logout();
@@ -36,7 +37,7 @@ const Profile = () => {
             icon={<UserOutlined />}
           />
           <div>
-            <Title level={3} style={{ margin: 0, color: '#0f172a', fontWeight: 700 }}>
+            <Title level={3} style={{ margin: 0, fontWeight: 700 }}>
               {user?.name}
             </Title>
             <Space style={{ marginTop: 4 }}>
@@ -46,7 +47,7 @@ const Profile = () => {
               >
                 {user?.role === 'admin' ? '🛡️ Administrator' : '👤 Citizen'}
               </Tag>
-              <Text style={{ color: '#64748b', fontSize: 13 }}>ID: {user?.id || 'Active'}</Text>
+              <Text type="secondary" style={{ fontSize: 13 }}>ID: {user?.id || 'Active'}</Text>
             </Space>
           </div>
         </div>
@@ -54,14 +55,13 @@ const Profile = () => {
         <Descriptions
           bordered
           column={1}
-          labelStyle={{ width: '30%', fontWeight: 600, color: '#334155', background: '#f8fafc' }}
-          contentStyle={{ color: '#0f172a' }}
+          labelStyle={{ width: '30%', fontWeight: 600 }}
         >
           <Descriptions.Item label={<span><UserOutlined style={{ marginRight: 8, color: '#0284c7' }} />Full Name</span>}>
-            {user?.name}
+            <span style={{ fontWeight: 500 }}>{user?.name}</span>
           </Descriptions.Item>
           <Descriptions.Item label={<span><MailOutlined style={{ marginRight: 8, color: '#0284c7' }} />Email Address</span>}>
-            {user?.email}
+            <span>{user?.email}</span>
           </Descriptions.Item>
           <Descriptions.Item label={<span><SafetyOutlined style={{ marginRight: 8, color: '#0284c7' }} />Assigned Role</span>}>
             <Tag color={user?.role === 'admin' ? 'purple' : 'blue'}>
@@ -69,7 +69,7 @@ const Profile = () => {
             </Tag>
           </Descriptions.Item>
           <Descriptions.Item label={<span><CalendarOutlined style={{ marginRight: 8, color: '#0284c7' }} />Member Since</span>}>
-            {formattedDate}
+            <span>{formattedDate}</span>
           </Descriptions.Item>
           <Descriptions.Item label="Password Status">
             <span style={{ color: '#10b981', fontWeight: 500 }}>

@@ -2,11 +2,12 @@ import React from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import Loading from './Loading';
-import { Result, Button } from 'antd';
+import { Result, Button, theme } from 'antd';
 
 const ProtectedRoute = ({ children, requiredRole }) => {
   const { user, isAuthenticated, loading } = useAuth();
   const location = useLocation();
+  const { token } = theme.useToken();
 
   if (loading) {
     return <Loading fullScreen tip="Verifying authorization..." />;
@@ -21,7 +22,7 @@ const ProtectedRoute = ({ children, requiredRole }) => {
     // If a normal user tries to access admin routes
     if (requiredRole === 'admin') {
       return (
-        <div style={{ padding: '80px 24px', background: '#f8fafc', minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <div style={{ padding: '80px 24px', background: token.colorBgLayout, minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
           <Result
             status="403"
             title="403 - Access Denied"

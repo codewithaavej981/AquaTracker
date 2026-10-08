@@ -19,7 +19,6 @@ import {
 } from 'antd';
 import {
   PlusOutlined,
-  AlertOutlined,
   EyeOutlined,
   EditOutlined,
   DeleteOutlined,
@@ -175,7 +174,7 @@ const MyComplaints = () => {
       dataIndex: 'type',
       key: 'type',
       render: (type) => (
-        <span style={{ fontWeight: 600, color: '#0f172a' }}>{type}</span>
+        <span style={{ fontWeight: 600 }}>{type}</span>
       ),
     },
     {
@@ -183,7 +182,7 @@ const MyComplaints = () => {
       dataIndex: 'location',
       key: 'location',
       ellipsis: true,
-      render: (loc) => <span style={{ color: '#334155' }}>{loc}</span>,
+      render: (loc) => <span>{loc}</span>,
     },
     {
       title: 'Priority',
@@ -311,39 +310,45 @@ const MyComplaints = () => {
         <Col xs={24} sm={8}>
           <Card className="aqua-card">
             <Statistic
-              title={<span style={{ color: '#64748b' }}>Pending Reviews</span>}
+              title={<Text type="secondary">Pending Reviews</Text>}
               value={pendingCount}
               prefix={<ClockCircleOutlined style={{ color: '#f59e0b' }} />}
               valueStyle={{ color: '#f59e0b', fontWeight: 700 }}
             />
-            <div style={{ fontSize: 12, color: '#94a3b8', marginTop: 8 }}>
-              Awaiting municipal administration triage
+            <div style={{ marginTop: 8 }}>
+              <Text type="secondary" style={{ fontSize: 12 }}>
+                Awaiting municipal administration triage
+              </Text>
             </div>
           </Card>
         </Col>
         <Col xs={24} sm={8}>
           <Card className="aqua-card">
             <Statistic
-              title={<span style={{ color: '#64748b' }}>In Progress</span>}
+              title={<Text type="secondary">In Progress</Text>}
               value={inProgressCount}
               prefix={<SyncOutlined spin={inProgressCount > 0} style={{ color: '#0284c7' }} />}
               valueStyle={{ color: '#0284c7', fontWeight: 700 }}
             />
-            <div style={{ fontSize: 12, color: '#94a3b8', marginTop: 8 }}>
-              Maintenance technicians dispatched
+            <div style={{ marginTop: 8 }}>
+              <Text type="secondary" style={{ fontSize: 12 }}>
+                Maintenance technicians dispatched
+              </Text>
             </div>
           </Card>
         </Col>
         <Col xs={24} sm={8}>
           <Card className="aqua-card">
             <Statistic
-              title={<span style={{ color: '#64748b' }}>Resolved Grievances</span>}
+              title={<Text type="secondary">Resolved Grievances</Text>}
               value={resolvedCount}
               prefix={<CheckCircleOutlined style={{ color: '#10b981' }} />}
               valueStyle={{ color: '#10b981', fontWeight: 700 }}
             />
-            <div style={{ fontSize: 12, color: '#94a3b8', marginTop: 8 }}>
-              Successfully completed work orders
+            <div style={{ marginTop: 8 }}>
+              <Text type="secondary" style={{ fontSize: 12 }}>
+                Successfully completed work orders
+              </Text>
             </div>
           </Card>
         </Col>
@@ -353,7 +358,7 @@ const MyComplaints = () => {
       <Card
         className="aqua-card"
         title={
-          <span style={{ fontWeight: 600, color: '#0f172a' }}>
+          <span style={{ fontWeight: 600 }}>
             📋 Registered Grievances ({complaints.length})
           </span>
         }
@@ -371,7 +376,7 @@ const MyComplaints = () => {
             dataSource={complaints}
             rowKey="_id"
             pagination={{ pageSize: 8, showSizeChanger: false }}
-            responsive
+            scroll={{ x: 650 }}
           />
         )}
       </Card>
@@ -379,7 +384,7 @@ const MyComplaints = () => {
       {/* View Complaint Modal */}
       <Modal
         title={
-          <span style={{ fontWeight: 700, color: '#0f172a' }}>
+          <span style={{ fontWeight: 700 }}>
             🔍 Complaint Details #{viewingComplaint?._id.slice(-6)}
           </span>
         }
@@ -398,10 +403,10 @@ const MyComplaints = () => {
             bordered
             column={1}
             style={{ marginTop: 16 }}
-            labelStyle={{ width: '30%', fontWeight: 600, color: '#334155', background: '#f8fafc' }}
+            labelStyle={{ width: '30%', fontWeight: 600 }}
           >
             <Descriptions.Item label="Grievance Type">
-              <span style={{ fontWeight: 700, color: '#0f172a' }}>{viewingComplaint.type}</span>
+              <span style={{ fontWeight: 700 }}>{viewingComplaint.type}</span>
             </Descriptions.Item>
             <Descriptions.Item label="Resolution Status">
               {renderStatus(viewingComplaint.status)}
@@ -413,7 +418,7 @@ const MyComplaints = () => {
               {viewingComplaint.location}
             </Descriptions.Item>
             <Descriptions.Item label="Detailed Description">
-              <div style={{ whiteSpace: 'pre-wrap', color: '#334155' }}>
+              <div style={{ whiteSpace: 'pre-wrap' }}>
                 {viewingComplaint.description}
               </div>
             </Descriptions.Item>
@@ -429,7 +434,7 @@ const MyComplaints = () => {
 
       {/* Edit Complaint Modal */}
       <Modal
-        title={<span style={{ fontWeight: 700, color: '#0f172a' }}>✏️ Edit Complaint Details</span>}
+        title={<span style={{ fontWeight: 700 }}>✏️ Edit Complaint Details</span>}
         open={editModalOpen}
         onCancel={() => setEditModalOpen(false)}
         footer={null}
